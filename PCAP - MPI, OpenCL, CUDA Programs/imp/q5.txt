@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+__global__ void matrixAddMul2D(int *A,int *B,int *C,int *D,int n){
+	int row = blockIdx.x*blockDim.x+threadIdx.x;
+	int col = blockIdx.y*blockDim.y+threadIdx.y;
+
+	D[row * n + col] = A[row * n + col] + B[row * n + col];		//Sum
+
+	int val = 0;
+	for(int i = 0; i < n; i++){
+		val += A[row * n + i] * B[i * n + col];				//Product
+	}
+	C[row * n + col] = val;
+}
+
+int main(void){
+	int A[50],B[50],C[50],D[50];
+	int *Ad,*Bd,*Cd,*Dd;
+
+	printf("Enter the size of matrices\n");
+	int n;
+	scanf("%d",&n);
+
+	printf("Enter matrix A:\n");
+	for(int i=0;i<n*n;i++)
+		scanf("%d", &A[i]);
+
+	printf("Enter matrix B:\n");
+	for(int i=0;i<n*n;i++)
+		scanf("%d", &B[i]);
+
+
+	cudaMalloc((void **)&Ad,sizeof(int)*n*n);
+	cudaMalloc((void **)&Bd,sizeof(int)*n*n);
+	cudaMalloc((void **)&Cd,sizeof(int)*n*n);
+	cudaMalloc((void **)&Dd,sizeof(int)*n*n);
+
+	cudaMemcpy(Ad, A, n*n*sizeof(int), cudaMemcpyHostToDevice);
+	cudaMemcpy(Bd, B, n*n*sizeof(int), cudaMemcpyHostToDevice);
+
+	dim3 d2(n/2,n/2,1);
+	dim3 d1(2,2,1);
+	matrixAddMul2D<<<d1,d2>>>(Ad,Bd,Cd,Dd,n);
+
+	cudaMemcpy(C,Cd, sizeof(int)*n*n, cudaMemcpyDeviceToHost);
+	cudaMemcpy(D,Dd, sizeof(int)*n*n, cudaMemcpyDeviceToHost);
+
+	printf("Product :\n");
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++)
+			printf("%d ",C[i * n + j]);
+		printf("\n");
+	}
+
+	printf("Sum :\n");
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++)
+			printf("%d ",D[i * n + j]);
+		printf("\n");
+	}
+
+	cudaFree(Ad);
+	cudaFree(Bd);
+	cudaFree(Cd);
+	cudaFree(Dd);
+
+	return 0;
+}

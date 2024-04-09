@@ -1,0 +1,7 @@
+END SEM
+
+BATCH
+1)Worst Fit Program for given processes (40 marks)
+
+
+2)LRU (40 marks S)

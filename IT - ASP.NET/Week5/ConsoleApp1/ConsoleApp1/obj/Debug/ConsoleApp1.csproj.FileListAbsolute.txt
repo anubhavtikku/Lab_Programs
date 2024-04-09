@@ -1,0 +1,6 @@
+C:\Users\IT\Desktop\Anubhav IT LAB\Week5\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\IT\Desktop\Anubhav IT LAB\Week5\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\IT\Desktop\Anubhav IT LAB\Week5\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\IT\Desktop\Anubhav IT LAB\Week5\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csprojResolveAssemblyReference.cache
+C:\Users\IT\Desktop\Anubhav IT LAB\Week5\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\IT\Desktop\Anubhav IT LAB\Week5\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

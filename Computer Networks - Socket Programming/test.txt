@@ -1,0 +1,5 @@
+END SEM
+
+10 marks write-up UDP echo program
+
+30 marks write-up execution GNS Program having DHCP and VLANs

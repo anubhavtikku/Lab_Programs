@@ -1,0 +1,87 @@
+NDB006
+The number of symbol table entries is: 5
+The length of the symbol table is: 89
+
+Index Hierarchy Path
+----- --------------
+!	&null_hpath&
+.	|fulladder:stage0|
+A	|fulladder:stage1|
+T	|fulladder:stage2|
+g	|fulladder:stage3|
+
+The number of name info structs is : 71
+
+InsOrder BitField SymTableIndex NextSyn SynParent Loc ChainType NextChain ChainParent FanOut DirExp ParExp ShareExp NodeName
+-------- -------- ------------- ------- --------- --- --------- --------- ----------- ------ ------ ------ -------- --------
+"	IeEA	!	4	0	:15	}
+#	IeEA	!	5	0	:16	~
+$	IeEA	!	6	0	:17	"!
+%	IeEA	!	7	0	:18	""
+&	L8ef	!	2	0	18	'	F	P	Q	b	c	d	e	f	g	h	[	\	^	_	`	a	*	carryin	o
+'	Nj's	!	3	0	1	carryout	|
+(	IeE[	!	3	0	s0	{
+)	IeE[	!	3	0	s1	z
+*	Nj's	!	3	0	3	s2	y
++	IeE[	!	3	0	s3	x
+,	L8ef	!	2	0	18	'	F	P	Q	b	c	d	e	f	g	[	\	]	^	_	`	(	*	x0	s
+-	L8ef	!	2	0	17	'	P	Q	b	c	d	e	f	g	[	\	]	^	_	`	)	*	x1	r
+.	L8ef	!	2	0	16	'	b	c	d	e	f	g	h	[	\	]	^	_	`	a	*	x2	q
+/	L8ef	!	2	0	8	'	[	\	]	^	`	a	+	x3	p
+0	L8ef	!	2	0	18	'	F	P	Q	b	c	e	f	g	h	[	\	]	^	_	`	(	*	y0	w
+1	L8ef	!	2	0	17	'	F	P	Q	b	c	d	e	f	g	h	[	\	]	^	_	*	y1	v
+2	L8ef	!	2	0	17	'	P	Q	b	c	d	e	f	h	[	\	]	^	_	`	a	*	y2	u
+3	L8ef	!	2	0	15	'	b	c	d	e	f	g	h	[	\	]	^	_	`	a	y3	t
+4	IeEA	.	5	0	:10	"I
+5	IeEA	.	5	0	:11	"J
+6	IeEA	.	5	0	:12	"K
+7	IeEA	.	5	0	:13	"L
+8	IeEA	.	5	0	:14	"M
+9	IeEA	.	4	0	:6	"E
+:	IeEA	.	4	0	:7	"F
+;	IeEA	.	4	0	:8	"G
+<	IeEA	.	5	0	:9	"H
+=	IeEA	A	5	0	:10	"\
+>	IeEA	A	5	0	:11	"]
+?	IeEA	A	5	0	:12	"^
+@	IeEA	A	5	0	:13	"_
+A	IeEA	A	5	0	:14	"`
+B	IeEA	A	4	0	:6	"X
+C	IeEA	A	4	0	:7	"Y
+D	IeEA	A	4	0	:8	"Z
+E	IeEA	A	5	0	:9	"[
+F	Q<Im	A	4	0	1	)	1	~8~1	'!
+G	IeEA	T	5	0	:10	"n
+H	IeEA	T	5	0	:11	"o
+I	IeEA	T	5	0	:12	"p
+J	IeEA	T	5	0	:13	"q
+K	IeEA	T	5	0	:14	"r
+L	IeEA	T	4	0	:6	"j
+M	IeEA	T	4	0	:7	"k
+N	IeEA	T	4	0	:8	"l
+O	IeEA	T	5	0	:9	"m
+P	Q<Im	T	4	0	1	*	1	~8~1	&o
+Q	Q<Im	T	4	0	1	*	1	~8~2	&{
+R	IeEA	g	5	0	:10	#"
+S	IeEA	g	5	0	:11	##
+T	IeEA	g	5	0	:12	#$
+U	IeEA	g	5	0	:13	#%
+V	IeEA	g	5	0	:14	#&
+W	IeEA	g	4	0	:6	"|
+X	IeEA	g	4	0	:7	"}
+Y	IeEA	g	4	0	:8	"~
+Z	IeEA	g	5	0	:9	#!
+[	Q<Im	g	5	0	1	'	1	~14~1	&W
+\	Q<Im	g	5	0	1	'	1	~14~2	&[
+]	Q<Im	g	5	0	1	'	1	~14~3	&_
+^	Q<Im	g	5	0	1	'	1	~14~4	&c
+_	Q<Im	g	5	0	1	'	1	~14~5	&k
+`	Q<Im	g	5	0	1	'	1	~14~6	&w
+a	L7gU	g	5	0	1	'	~14~7	')
+b	Q<Im	g	4	0	1	+	1	~8~1	&G
+c	Q<Im	g	4	0	1	+	1	~8~2	&K
+d	Q<Im	g	4	0	1	+	1	~8~3	&O
+e	Q<Im	g	4	0	1	+	1	~8~4	&S
+f	Q<Im	g	4	0	1	+	1	~8~5	&g
+g	Q<Im	g	4	0	1	+	1	~8~6	&s
+h	Q<Im	g	4	0	1	+	1	~8~7	'%

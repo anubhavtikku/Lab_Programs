@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+__global__ void CUDAStrCount(char *str, char *sub, int *C)
+{
+	int i = threadIdx.x;
+	for(int j=i;j<i+3;j++)
+	{
+		if(str[j]!=sub[j-i])
+			{
+				return;
+			}
+	}
+	C[i]=1;
+}
+int main()
+{
+	int C[40]={0};
+	char str[40];
+	char sub[20];
+	int lenstr, lensub;
+	char *pStr,*pSub;
+	printf("Enter string: ");
+	gets(str);
+	lenstr=strlen(str);
+	printf("Enter substring: ");
+	gets(sub);
+	lensub=strlen(sub);
+	int *pC;
+
+	cudaMalloc((void**)&pStr, lenstr*sizeof(char));
+	cudaMalloc((void**)&pSub, lensub*sizeof(char));
+	cudaMalloc((void**)&pC, 40*sizeof(int));
+
+	cudaMemcpy(pStr, str, lenstr*sizeof(char), cudaMemcpyHostToDevice);
+	cudaMemcpy(pSub, sub, lensub*sizeof(char), cudaMemcpyHostToDevice);
+	cudaMemcpy(pC, C, 40*sizeof(int), cudaMemcpyHostToDevice);
+
+	int num=lenstr-lensub+1;
+
+	CUDAStrCount<<<1,num>>>(pStr,pSub, pC);
+
+	cudaMemcpy(C, pC, 40*sizeof(int), cudaMemcpyDeviceToHost);
+	int count=0;
+	for(int i=0;i<lenstr;i++)
+	{
+		if (C[i]==1)
+		{
+			printf("substring found at index %d. \n",i);
+			count++;
+		}
+	}
+	printf("\nTotal count: %d\n",count);
+
+	cudaFree(pStr);
+	cudaFree(pSub);
+	cudaFree(pC);
+	printf("\n");
+	return 0;
+	}

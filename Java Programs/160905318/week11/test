@@ -1,0 +1,8 @@
+struct func(&a, &b)
+{
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    return temp;
+    &&a
+}

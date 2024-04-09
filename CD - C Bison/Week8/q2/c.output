@@ -1,0 +1,806 @@
+Terminals unused in grammar
+
+   FOR
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: MAIN '(' ')' '{' declarations statement_list '}'
+
+    2 declarations: DATATYPE identifier_list ';' declarations
+    3             | %empty
+
+    4 identifier_list: ID
+    5                | ID '[' NUMBER ']'
+    6                | ID ',' identifier_list
+    7                | ID '[' NUMBER ']' ',' identifier_list
+
+    8 statement_list: statement statement_list
+    9               | %empty
+
+   10 statement: assign_stat ';'
+   11          | decision_stat
+   12          | looping_stat
+
+   13 assign_stat: ID '=' expn
+
+   14 looping_stat: WHILE '(' expn ')' '{' statement_list '}'
+   15             | '(' assign_stat ';' expn ';' assign_stat ')' '{' statement_list '}'
+
+   16 expn: simple_exp eprime
+
+   17 eprime: RELOP simple_exp
+   18       | %empty
+
+   19 simple_exp: term seprime
+
+   20 seprime: ADDOP term seprime
+   21        | %empty
+
+   22 term: factor tprime
+
+   23 tprime: MULOP factor tprime
+   24       | %empty
+
+   25 factor: ID
+   26       | NUMBER
+
+   27 decision_stat: IF '(' expn ')' '{' statement_list '}' dprime
+
+   28 dprime: ELSE '{' statement_list '}'
+   29       | %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 1 14 15 27
+')' (41) 1 14 15 27
+',' (44) 6 7
+';' (59) 2 10 15
+'=' (61) 13
+'[' (91) 5 7
+']' (93) 5 7
+'{' (123) 1 14 15 27 28
+'}' (125) 1 14 15 27 28
+error (256)
+NUMBER (258) 5 7 26
+ID (259) 4 5 6 7 13 25
+DATATYPE (260) 2
+ADDOP (261) 20
+MULOP (262) 23
+IF (263) 27
+ELSE (264) 28
+RELOP (265) 17
+MAIN (266) 1
+WHILE (267) 14
+FOR (268)
+
+
+Nonterminals, with rules where they appear
+
+$accept (23)
+    on left: 0
+program (24)
+    on left: 1, on right: 0
+declarations (25)
+    on left: 2 3, on right: 1 2
+identifier_list (26)
+    on left: 4 5 6 7, on right: 2 6 7
+statement_list (27)
+    on left: 8 9, on right: 1 8 14 15 27 28
+statement (28)
+    on left: 10 11 12, on right: 8
+assign_stat (29)
+    on left: 13, on right: 10 15
+looping_stat (30)
+    on left: 14 15, on right: 12
+expn (31)
+    on left: 16, on right: 13 14 15 27
+eprime (32)
+    on left: 17 18, on right: 16
+simple_exp (33)
+    on left: 19, on right: 16 17
+seprime (34)
+    on left: 20 21, on right: 19 20
+term (35)
+    on left: 22, on right: 19 20
+tprime (36)
+    on left: 23 24, on right: 22 23
+factor (37)
+    on left: 25 26, on right: 22 23
+decision_stat (38)
+    on left: 27, on right: 11
+dprime (39)
+    on left: 28 29, on right: 27
+
+
+State 0
+
+    0 $accept: . program $end
+
+    MAIN  shift, and go to state 1
+
+    program  go to state 2
+
+
+State 1
+
+    1 program: MAIN . '(' ')' '{' declarations statement_list '}'
+
+    '('  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 program: MAIN '(' . ')' '{' declarations statement_list '}'
+
+    ')'  shift, and go to state 5
+
+
+State 4
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 5
+
+    1 program: MAIN '(' ')' . '{' declarations statement_list '}'
+
+    '{'  shift, and go to state 6
+
+
+State 6
+
+    1 program: MAIN '(' ')' '{' . declarations statement_list '}'
+
+    DATATYPE  shift, and go to state 7
+
+    $default  reduce using rule 3 (declarations)
+
+    declarations  go to state 8
+
+
+State 7
+
+    2 declarations: DATATYPE . identifier_list ';' declarations
+
+    ID  shift, and go to state 9
+
+    identifier_list  go to state 10
+
+
+State 8
+
+    1 program: MAIN '(' ')' '{' declarations . statement_list '}'
+
+    ID     shift, and go to state 11
+    IF     shift, and go to state 12
+    WHILE  shift, and go to state 13
+    '('    shift, and go to state 14
+
+    $default  reduce using rule 9 (statement_list)
+
+    statement_list  go to state 15
+    statement       go to state 16
+    assign_stat     go to state 17
+    looping_stat    go to state 18
+    decision_stat   go to state 19
+
+
+State 9
+
+    4 identifier_list: ID .
+    5                | ID . '[' NUMBER ']'
+    6                | ID . ',' identifier_list
+    7                | ID . '[' NUMBER ']' ',' identifier_list
+
+    '['  shift, and go to state 20
+    ','  shift, and go to state 21
+
+    $default  reduce using rule 4 (identifier_list)
+
+
+State 10
+
+    2 declarations: DATATYPE identifier_list . ';' declarations
+
+    ';'  shift, and go to state 22
+
+
+State 11
+
+   13 assign_stat: ID . '=' expn
+
+    '='  shift, and go to state 23
+
+
+State 12
+
+   27 decision_stat: IF . '(' expn ')' '{' statement_list '}' dprime
+
+    '('  shift, and go to state 24
+
+
+State 13
+
+   14 looping_stat: WHILE . '(' expn ')' '{' statement_list '}'
+
+    '('  shift, and go to state 25
+
+
+State 14
+
+   15 looping_stat: '(' . assign_stat ';' expn ';' assign_stat ')' '{' statement_list '}'
+
+    ID  shift, and go to state 11
+
+    assign_stat  go to state 26
+
+
+State 15
+
+    1 program: MAIN '(' ')' '{' declarations statement_list . '}'
+
+    '}'  shift, and go to state 27
+
+
+State 16
+
+    8 statement_list: statement . statement_list
+
+    ID     shift, and go to state 11
+    IF     shift, and go to state 12
+    WHILE  shift, and go to state 13
+    '('    shift, and go to state 14
+
+    $default  reduce using rule 9 (statement_list)
+
+    statement_list  go to state 28
+    statement       go to state 16
+    assign_stat     go to state 17
+    looping_stat    go to state 18
+    decision_stat   go to state 19
+
+
+State 17
+
+   10 statement: assign_stat . ';'
+
+    ';'  shift, and go to state 29
+
+
+State 18
+
+   12 statement: looping_stat .
+
+    $default  reduce using rule 12 (statement)
+
+
+State 19
+
+   11 statement: decision_stat .
+
+    $default  reduce using rule 11 (statement)
+
+
+State 20
+
+    5 identifier_list: ID '[' . NUMBER ']'
+    7                | ID '[' . NUMBER ']' ',' identifier_list
+
+    NUMBER  shift, and go to state 30
+
+
+State 21
+
+    6 identifier_list: ID ',' . identifier_list
+
+    ID  shift, and go to state 9
+
+    identifier_list  go to state 31
+
+
+State 22
+
+    2 declarations: DATATYPE identifier_list ';' . declarations
+
+    DATATYPE  shift, and go to state 7
+
+    $default  reduce using rule 3 (declarations)
+
+    declarations  go to state 32
+
+
+State 23
+
+   13 assign_stat: ID '=' . expn
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    expn        go to state 35
+    simple_exp  go to state 36
+    term        go to state 37
+    factor      go to state 38
+
+
+State 24
+
+   27 decision_stat: IF '(' . expn ')' '{' statement_list '}' dprime
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    expn        go to state 39
+    simple_exp  go to state 36
+    term        go to state 37
+    factor      go to state 38
+
+
+State 25
+
+   14 looping_stat: WHILE '(' . expn ')' '{' statement_list '}'
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    expn        go to state 40
+    simple_exp  go to state 36
+    term        go to state 37
+    factor      go to state 38
+
+
+State 26
+
+   15 looping_stat: '(' assign_stat . ';' expn ';' assign_stat ')' '{' statement_list '}'
+
+    ';'  shift, and go to state 41
+
+
+State 27
+
+    1 program: MAIN '(' ')' '{' declarations statement_list '}' .
+
+    $default  reduce using rule 1 (program)
+
+
+State 28
+
+    8 statement_list: statement statement_list .
+
+    $default  reduce using rule 8 (statement_list)
+
+
+State 29
+
+   10 statement: assign_stat ';' .
+
+    $default  reduce using rule 10 (statement)
+
+
+State 30
+
+    5 identifier_list: ID '[' NUMBER . ']'
+    7                | ID '[' NUMBER . ']' ',' identifier_list
+
+    ']'  shift, and go to state 42
+
+
+State 31
+
+    6 identifier_list: ID ',' identifier_list .
+
+    $default  reduce using rule 6 (identifier_list)
+
+
+State 32
+
+    2 declarations: DATATYPE identifier_list ';' declarations .
+
+    $default  reduce using rule 2 (declarations)
+
+
+State 33
+
+   26 factor: NUMBER .
+
+    $default  reduce using rule 26 (factor)
+
+
+State 34
+
+   25 factor: ID .
+
+    $default  reduce using rule 25 (factor)
+
+
+State 35
+
+   13 assign_stat: ID '=' expn .
+
+    $default  reduce using rule 13 (assign_stat)
+
+
+State 36
+
+   16 expn: simple_exp . eprime
+
+    RELOP  shift, and go to state 43
+
+    $default  reduce using rule 18 (eprime)
+
+    eprime  go to state 44
+
+
+State 37
+
+   19 simple_exp: term . seprime
+
+    ADDOP  shift, and go to state 45
+
+    $default  reduce using rule 21 (seprime)
+
+    seprime  go to state 46
+
+
+State 38
+
+   22 term: factor . tprime
+
+    MULOP  shift, and go to state 47
+
+    $default  reduce using rule 24 (tprime)
+
+    tprime  go to state 48
+
+
+State 39
+
+   27 decision_stat: IF '(' expn . ')' '{' statement_list '}' dprime
+
+    ')'  shift, and go to state 49
+
+
+State 40
+
+   14 looping_stat: WHILE '(' expn . ')' '{' statement_list '}'
+
+    ')'  shift, and go to state 50
+
+
+State 41
+
+   15 looping_stat: '(' assign_stat ';' . expn ';' assign_stat ')' '{' statement_list '}'
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    expn        go to state 51
+    simple_exp  go to state 36
+    term        go to state 37
+    factor      go to state 38
+
+
+State 42
+
+    5 identifier_list: ID '[' NUMBER ']' .
+    7                | ID '[' NUMBER ']' . ',' identifier_list
+
+    ','  shift, and go to state 52
+
+    $default  reduce using rule 5 (identifier_list)
+
+
+State 43
+
+   17 eprime: RELOP . simple_exp
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    simple_exp  go to state 53
+    term        go to state 37
+    factor      go to state 38
+
+
+State 44
+
+   16 expn: simple_exp eprime .
+
+    $default  reduce using rule 16 (expn)
+
+
+State 45
+
+   20 seprime: ADDOP . term seprime
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    term    go to state 54
+    factor  go to state 38
+
+
+State 46
+
+   19 simple_exp: term seprime .
+
+    $default  reduce using rule 19 (simple_exp)
+
+
+State 47
+
+   23 tprime: MULOP . factor tprime
+
+    NUMBER  shift, and go to state 33
+    ID      shift, and go to state 34
+
+    factor  go to state 55
+
+
+State 48
+
+   22 term: factor tprime .
+
+    $default  reduce using rule 22 (term)
+
+
+State 49
+
+   27 decision_stat: IF '(' expn ')' . '{' statement_list '}' dprime
+
+    '{'  shift, and go to state 56
+
+
+State 50
+
+   14 looping_stat: WHILE '(' expn ')' . '{' statement_list '}'
+
+    '{'  shift, and go to state 57
+
+
+State 51
+
+   15 looping_stat: '(' assign_stat ';' expn . ';' assign_stat ')' '{' statement_list '}'
+
+    ';'  shift, and go to state 58
+
+
+State 52
+
+    7 identifier_list: ID '[' NUMBER ']' ',' . identifier_list
+
+    ID  shift, and go to state 9
+
+    identifier_list  go to state 59
+
+
+State 53
+
+   17 eprime: RELOP simple_exp .
+
+    $default  reduce using rule 17 (eprime)
+
+
+State 54
+
+   20 seprime: ADDOP term . seprime
+
+    ADDOP  shift, and go to state 45
+
+    $default  reduce using rule 21 (seprime)
+
+    seprime  go to state 60
+
+
+State 55
+
+   23 tprime: MULOP factor . tprime
+
+    MULOP  shift, and go to state 47
+
+    $default  reduce using rule 24 (tprime)
+
+    tprime  go to state 61
+
+
+State 56
+
+   27 decision_stat: IF '(' expn ')' '{' . statement_list '}' dprime
+
+    ID     shift, and go to state 11
+    IF     shift, and go to state 12
+    WHILE  shift, and go to state 13
+    '('    shift, and go to state 14
+
+    $default  reduce using rule 9 (statement_list)
+
+    statement_list  go to state 62
+    statement       go to state 16
+    assign_stat     go to state 17
+    looping_stat    go to state 18
+    decision_stat   go to state 19
+
+
+State 57
+
+   14 looping_stat: WHILE '(' expn ')' '{' . statement_list '}'
+
+    ID     shift, and go to state 11
+    IF     shift, and go to state 12
+    WHILE  shift, and go to state 13
+    '('    shift, and go to state 14
+
+    $default  reduce using rule 9 (statement_list)
+
+    statement_list  go to state 63
+    statement       go to state 16
+    assign_stat     go to state 17
+    looping_stat    go to state 18
+    decision_stat   go to state 19
+
+
+State 58
+
+   15 looping_stat: '(' assign_stat ';' expn ';' . assign_stat ')' '{' statement_list '}'
+
+    ID  shift, and go to state 11
+
+    assign_stat  go to state 64
+
+
+State 59
+
+    7 identifier_list: ID '[' NUMBER ']' ',' identifier_list .
+
+    $default  reduce using rule 7 (identifier_list)
+
+
+State 60
+
+   20 seprime: ADDOP term seprime .
+
+    $default  reduce using rule 20 (seprime)
+
+
+State 61
+
+   23 tprime: MULOP factor tprime .
+
+    $default  reduce using rule 23 (tprime)
+
+
+State 62
+
+   27 decision_stat: IF '(' expn ')' '{' statement_list . '}' dprime
+
+    '}'  shift, and go to state 65
+
+
+State 63
+
+   14 looping_stat: WHILE '(' expn ')' '{' statement_list . '}'
+
+    '}'  shift, and go to state 66
+
+
+State 64
+
+   15 looping_stat: '(' assign_stat ';' expn ';' assign_stat . ')' '{' statement_list '}'
+
+    ')'  shift, and go to state 67
+
+
+State 65
+
+   27 decision_stat: IF '(' expn ')' '{' statement_list '}' . dprime
+
+    ELSE  shift, and go to state 68
+
+    $default  reduce using rule 29 (dprime)
+
+    dprime  go to state 69
+
+
+State 66
+
+   14 looping_stat: WHILE '(' expn ')' '{' statement_list '}' .
+
+    $default  reduce using rule 14 (looping_stat)
+
+
+State 67
+
+   15 looping_stat: '(' assign_stat ';' expn ';' assign_stat ')' . '{' statement_list '}'
+
+    '{'  shift, and go to state 70
+
+
+State 68
+
+   28 dprime: ELSE . '{' statement_list '}'
+
+    '{'  shift, and go to state 71
+
+
+State 69
+
+   27 decision_stat: IF '(' expn ')' '{' statement_list '}' dprime .
+
+    $default  reduce using rule 27 (decision_stat)
+
+
+State 70
+
+   15 looping_stat: '(' assign_stat ';' expn ';' assign_stat ')' '{' . statement_list '}'
+
+    ID     shift, and go to state 11
+    IF     shift, and go to state 12
+    WHILE  shift, and go to state 13
+    '('    shift, and go to state 14
+
+    $default  reduce using rule 9 (statement_list)
+
+    statement_list  go to state 72
+    statement       go to state 16
+    assign_stat     go to state 17
+    looping_stat    go to state 18
+    decision_stat   go to state 19
+
+
+State 71
+
+   28 dprime: ELSE '{' . statement_list '}'
+
+    ID     shift, and go to state 11
+    IF     shift, and go to state 12
+    WHILE  shift, and go to state 13
+    '('    shift, and go to state 14
+
+    $default  reduce using rule 9 (statement_list)
+
+    statement_list  go to state 73
+    statement       go to state 16
+    assign_stat     go to state 17
+    looping_stat    go to state 18
+    decision_stat   go to state 19
+
+
+State 72
+
+   15 looping_stat: '(' assign_stat ';' expn ';' assign_stat ')' '{' statement_list . '}'
+
+    '}'  shift, and go to state 74
+
+
+State 73
+
+   28 dprime: ELSE '{' statement_list . '}'
+
+    '}'  shift, and go to state 75
+
+
+State 74
+
+   15 looping_stat: '(' assign_stat ';' expn ';' assign_stat ')' '{' statement_list '}' .
+
+    $default  reduce using rule 15 (looping_stat)
+
+
+State 75
+
+   28 dprime: ELSE '{' statement_list '}' .
+
+    $default  reduce using rule 28 (dprime)
